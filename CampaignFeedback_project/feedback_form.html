@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Feedback Form</title>
+  <style>
+    /* Add some basic styling to make the form look visually appealing */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    form {
+      width: 50%;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+    }
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+</head>
+<body>
+  <form id="feedback-form" action="submit_feedback.php" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="feedback">Feedback:</label>
+    <textarea id="feedback" name="feedback" required></textarea>
+
+    <label for="rating">Rating (1-5):</label>
+    <input type="number" id="rating" name="rating" min="1" max="5" required>
+
+    <input type="submit" value="Submit Feedback">
+  </form>
+
+  <script>
+    // Add JavaScript validation to ensure form inputs are valid before submission
+    document.getElementById("feedback-form").addEventListener("submit", function(event) {
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var feedback = document.getElementById("feedback").value;
+      var rating = document.getElementById("rating").value;
+
+      if (name === "" || email === "" || feedback === "" || rating === "") {
+        alert("Please fill in all fields.");
+        event.preventDefault();
+      } else if (rating < 1 || rating > 5) {
+        alert("Rating must be between 1 and 5.");
+        event.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>
